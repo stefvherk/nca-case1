@@ -44,7 +44,7 @@ resource "aws_ecs_service" "ubuntu_service" {
 }
 
 resource "aws_security_group" "sg_container" {
-  name        = "sg-container"
+  name        = "securitygroup-container"
   description = "Allow inbound traffic for container"
   vpc_id      = aws_vpc.vpc_spoke_container.id
 
