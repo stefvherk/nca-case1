@@ -10,7 +10,7 @@ resource "aws_subnet" "subnet_hub" {
 }
 
 resource "aws_subnet" "subnet_spoke_container_public" {
-  vpc_id                  = aws_vpc.spoke_container.id
+  vpc_id                  = aws_vpc.vpc_spoke_container.id
   cidr_block              = "172.16.2.0/28"
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = true
