@@ -41,7 +41,7 @@ resource "aws_route" "spoke_data_to_hub_route" {
 }
 
 resource "aws_route" "private_to_nat" {
-  route_table_id         = aws_route_table.rt_spoke_container.id
+  route_table_id         = aws_route_table.rt_hub.id
   destination_cidr_block = "0.0.0.0/0"
   nat_gateway_id         = aws_nat_gateway.nat_container.id
 }
