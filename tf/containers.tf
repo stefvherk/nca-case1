@@ -11,15 +11,15 @@ resource "aws_ecs_task_definition" "ubuntu_task" {
 
   container_definitions = jsonencode([
     {
-      name             = "ubuntu-container"
-      image            = "ubuntu:latest"
-      essential        = true
-      command          = ["sleep", "infinity"]
+      name      = "ubuntu-container"
+      image     = "ubuntu:latest"
+      essential = true
+      command   = ["sleep", "infinity"]
       logConfiguration = {
         logDriver = "awslogs"
         options = {
-          "awslogs-group"        = "/ecs/ubuntu-container"
-          "awslogs-region"       = "eu-central-1"
+          "awslogs-group"         = "/ecs/ubuntu-container"
+          "awslogs-region"        = "eu-central-1"
           "awslogs-stream-prefix" = "ecs"
         }
       }
@@ -35,8 +35,8 @@ resource "aws_ecs_service" "ubuntu_service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets         = [aws_subnet.subnet_spoke_container_private.id]
-    security_groups = [aws_security_group.sg_container.id]
+    subnets          = [aws_subnet.subnet_spoke_container_private.id]
+    security_groups  = [aws_security_group.sg_container.id]
     assign_public_ip = false
   }
 
