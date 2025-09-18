@@ -66,14 +66,3 @@ resource "aws_security_group" "sg_container" {
         Name = "SG-Container"
     }
 }
-
-resource "aws_subnet" "subnet_spoke_container_private" {
-    vpc_id                  = aws_vpc.vpc_spoke_container.id
-    cidr_block              = "172.16.1.0/28"
-    availability_zone       = "eu-central-1"
-    map_public_ip_on_launch = false
-
-    tags = {
-        Name = "Subnet-Spoke-Container-Private"
-    }
-}
