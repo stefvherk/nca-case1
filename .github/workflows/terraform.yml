@@ -6,6 +6,10 @@ on:
       - main
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
@@ -17,7 +21,7 @@ jobs:
       - name: Configure AWS Credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::277537769232:role/GitHub_IAM_Admin
+          role-to-assume: arn:aws:iam::277537769232:role/GitHub_IAM_Admino
           aws-region: eu-central-1
 
       - name: Setup Terraform
