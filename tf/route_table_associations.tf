@@ -29,16 +29,16 @@ resource "aws_ec2_transit_gateway_route_table_association" "spoke_container_asso
 }
 
 resource "aws_ec2_transit_gateway_route_table_propagation" "propogation_spoke_container" {
-  transit_gateway_attachment_id  = tgw_attachment_spoke_container.id
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tgw_attachment_spoke_container.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.rt_egress.id
 }
 
 resource "aws_ec2_transit_gateway_route_table_propagation" "propogation_spoke_data" {
-  transit_gateway_attachment_id  = tgw_attachment_spoke_data.id
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tgw_attachment_spoke_data.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.rt_egress.id
 }
 
 resource "aws_ec2_transit_gateway_route_table_propagation" "propogation_spoke_monitoring" {
-  transit_gateway_attachment_id  = tgw_attachment_spoke_monitoring.id
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tgw_attachment_spoke_monitoring.id
   transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.rt_egress.id
 }
