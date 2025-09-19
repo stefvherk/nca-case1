@@ -1,25 +1,3 @@
-resource "aws_ec2_transit_gateway_route_table" "rt_egress" {
-  transit_gateway_id = aws_ec2_transit_gateway.tgw_hub.id
-
-  tags = {
-    Name = "TransitGatewayEgressRouteTable"
-  }
-}
-
-resource "aws_route_table" "rt_hub" {
-  vpc_id = aws_vpc.vpc_hub.id
-
-  tags = {
-    Name = "HubRouteTable"
-  }
-}
-
-resource "aws_route" "hub_to_nat_gateway" {
-  route_table_id         = aws_route_table.rt_hub.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat_hub.id
-}
-
 resource "aws_route_table_association" "rta_hub" {
   subnet_id      = aws_subnet.subnet_hub.id
   route_table_id = aws_route_table.rt_hub.id
