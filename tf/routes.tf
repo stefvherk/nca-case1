@@ -4,6 +4,12 @@ resource "aws_route" "default_route_hub" {
   gateway_id             = aws_internet_gateway.igw_hub.id
 }
 
+resource "aws_route" "hub_to_nat_gateway" {
+  route_table_id         = aws_route_table.rt_hub.id
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.nat_hub.id
+}
+
 resource "aws_route" "hub_to_spoke_container_route" {
   route_table_id            = aws_route_table.rt_hub.id
   destination_cidr_block    = aws_vpc.vpc_spoke_container.cidr_block
