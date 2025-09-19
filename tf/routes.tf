@@ -40,8 +40,8 @@ resource "aws_route" "spoke_data_to_hub_route" {
   vpc_peering_connection_id = aws_vpc_peering_connection.hub_to_spoke_data.id
 }
 
-resource "aws_route" "private_to_nat" {
-  route_table_id         = aws_route_table.rt_hub.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat_container.id
+resource "aws_ec2_transit_gateway_route" "default_to_hub" {
+  transit_gateway_route_table_id = aws_ec2_transit_gateway_route_table.rt_egress.id
+  destination_cidr_block         = "0.0.0.0/0"
+  transit_gateway_attachment_id  = aws_ec2_transit_gateway_vpc_attachment.tgw_attachment_hub.id
 }

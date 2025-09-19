@@ -25,3 +25,11 @@ resource "aws_route_table" "rt_spoke_data" {
     Name = "RT-Spoke-Data"
   }
 }
+
+resource "aws_ec2_transit_gateway_route_table" "rt_egress" {
+  transit_gateway_id = aws_ec2_transit_gateway.tgw_hub.id
+
+  tags = {
+    Name = "RT-TGW-Egress"
+  }
+}
