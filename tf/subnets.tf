@@ -9,6 +9,17 @@ resource "aws_subnet" "subnet_hub" {
   }
 }
 
+resource "aws_subnet" "subnet_hub_private" {
+  vpc_id                  = aws_vpc.vpc_hub.id
+  cidr_block              = "10.0.1.0/24"
+  availability_zone       = "eu-central-1a"
+  map_public_ip_on_launch = false
+
+  tags = {
+    Name = "Subnet-Hub-Private"
+  }
+}
+
 resource "aws_subnet" "subnet_spoke_container_private" {
   vpc_id                  = aws_vpc.vpc_spoke_container.id
   cidr_block              = "172.16.1.0/28"
