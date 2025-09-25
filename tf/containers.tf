@@ -35,11 +35,11 @@ resource "aws_ecs_task_definition" "nginx_task" {
 }
 
 resource "aws_ecs_service" "nginx_service" {
-  name            = "nginx-service"
-  cluster         = aws_ecs_cluster.ecs_cluster.id
-  task_definition = aws_ecs_task_definition.nginx_task.arn
-  desired_count   = 1
-  launch_type     = "FARGATE"
+  name                   = "nginx-service"
+  cluster                = aws_ecs_cluster.ecs_cluster.id
+  task_definition        = aws_ecs_task_definition.nginx_task.arn
+  desired_count          = 1
+  launch_type            = "FARGATE"
   enable_execute_command = true
 
   network_configuration {
@@ -87,7 +87,7 @@ resource "aws_security_group_rule" "ssm_inbound" {
   from_port                = 443
   to_port                  = 443
   protocol                 = "tcp"
-  security_group_id         = aws_security_group.sg_container.id
+  security_group_id        = aws_security_group.sg_container.id
   source_security_group_id = aws_security_group.sg_container.id
 }
 

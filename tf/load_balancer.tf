@@ -4,18 +4,18 @@ resource "aws_lb" "nginx_alb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.sg_container.id]
   subnets = [
-  aws_subnet.subnet_hub.id,
-  aws_subnet.subnet_hub_2.id
-]
+    aws_subnet.subnet_hub.id,
+    aws_subnet.subnet_hub_2.id
+  ]
 
   enable_deletion_protection = false
 }
 
 resource "aws_lb_target_group" "nginx_tg" {
-  name     = "nginx-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = aws_vpc.vpc_hub.id
+  name        = "nginx-tg"
+  port        = 80
+  protocol    = "HTTP"
+  vpc_id      = aws_vpc.vpc_hub.id
   target_type = "ip"
   health_check {
     path                = "/"
