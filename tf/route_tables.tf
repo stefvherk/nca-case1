@@ -1,35 +1,7 @@
-resource "aws_route_table" "rt_hub" {
+resource "aws_route_table" "public" {
   vpc_id = aws_vpc.vpc_hub.id
-  tags = {
-    Name = "RT-Hub"
-  }
 }
 
-resource "aws_route_table" "rt_spoke_container" {
-  vpc_id = aws_vpc.vpc_spoke_container.id
-  tags = {
-    Name = "RT-Spoke-Container"
-  }
-}
-
-resource "aws_route_table" "rt_spoke_monitoring" {
-  vpc_id = aws_vpc.vpc_spoke_monitoring.id
-  tags = {
-    Name = "RT-Spoke-Monitoring"
-  }
-}
-
-resource "aws_route_table" "rt_spoke_data" {
-  vpc_id = aws_vpc.vpc_spoke_data.id
-  tags = {
-    Name = "RT-Spoke-Data"
-  }
-}
-
-resource "aws_ec2_transit_gateway_route_table" "rt_egress" {
-  transit_gateway_id = aws_ec2_transit_gateway.tgw_hub.id
-
-  tags = {
-    Name = "RT-TGW-Egress"
-  }
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.vpc_hub.id
 }

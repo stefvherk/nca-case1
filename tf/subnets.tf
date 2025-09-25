@@ -9,31 +9,31 @@ resource "aws_subnet" "subnet_hub" {
   }
 }
 
-resource "aws_subnet" "subnet_hub_private" {
+resource "aws_subnet" "subnet_hub_2" {
   vpc_id                  = aws_vpc.vpc_hub.id
   cidr_block              = "10.0.1.0/24"
-  availability_zone       = "eu-central-1a"
-  map_public_ip_on_launch = false
+  map_public_ip_on_launch = true
+  availability_zone       = "eu-central-1b"
 
   tags = {
-    Name = "Subnet-Hub-Private"
+    Name = "Subnet-Hub-2"
   }
 }
 
-resource "aws_subnet" "subnet_spoke_container_private" {
-  vpc_id                  = aws_vpc.vpc_spoke_container.id
-  cidr_block              = "172.16.1.0/28"
+resource "aws_subnet" "subnet_container_private" {
+  vpc_id                  = aws_vpc.vpc_hub.id
+  cidr_block              = "10.0.2.0/24"
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = false
-
+  
   tags = {
     Name = "Subnet-Spoke-Container-Private"
   }
 }
 
-resource "aws_subnet" "subnet_spoke_monitoring_private" {
-  vpc_id                  = aws_vpc.vpc_spoke_monitoring.id
-  cidr_block              = "172.16.2.0/28"
+resource "aws_subnet" "subnet_monitoring_private" {
+  vpc_id                  = aws_vpc.vpc_hub.id
+  cidr_block              = "10.0.3.0/24"
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = false
 
@@ -42,9 +42,9 @@ resource "aws_subnet" "subnet_spoke_monitoring_private" {
   }
 }
 
-resource "aws_subnet" "subnet_spoke_data_private" {
-  vpc_id                  = aws_vpc.vpc_spoke_data.id
-  cidr_block              = "172.16.3.0/28"
+resource "aws_subnet" "subnet_data_private" {
+  vpc_id                  = aws_vpc.vpc_hub.id
+  cidr_block              = "10.0.4.0/24"
   availability_zone       = "eu-central-1a"
   map_public_ip_on_launch = false
 
